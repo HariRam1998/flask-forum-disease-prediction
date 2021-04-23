@@ -1,6 +1,10 @@
-# flask forum plant disease prediction
+# Flask forum plant disease prediction
 
 first install all pips in requirements.txt
+
+I have trained the plant disease dataset from kaggle and created the model using CNN.
+
+Trained model coding: firsttrialkeras.ipynb
 
 Run run.py
 
