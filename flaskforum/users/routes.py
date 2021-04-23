@@ -65,8 +65,8 @@ def forgotpassword():
 		print(hashed_password)
 		b = "hi this is your password " + a +" for your account " + form.email.data +" change the password inside the account click this to go to website "
 		server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
-		server.login("haritheharry94@gmail.com", "hariram@007")
-		server.sendmail("haritheharry94@gmail.com",form.email.data, b)
+		server.login("mail@gmail.com", "password") #here your mail id and password 
+		server.sendmail("mail@gmail.com",form.email.data, b) #here give your emailid
 		server.quit()
 		user = User.query.filter_by(email=form.email.data).first()
 		user.password = hashed_password
