@@ -1,0 +1,44 @@
+{%extends "layout.html"%}
+{%block content%}<br><br>
+<div class="col-md-11">
+  {%for post in posts.items%}
+
+    <article class="border  m-1 p-3 box1" style="background-color: white ; border-radius:15px;">
+
+        <div class="p-4">
+      <h3 align="justify">{{post.title}}</h3>
+        <img src="{{ url_for('static', filename='profiles/' + post.author.image_file) }}" class="float-left rounded-circle" style="width: 40px; height: 40px;">
+        <h6 class="text-muted p-2" style="height: 40px;">{{post.author.username}}</h6>
+        <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+      <p   align="justify" style = "white-space: pre-line;font-size:17px;">
+        {{post.content}}
+      </p>
+
+
+
+
+        <div class='mt-2'>
+<a href="{{ url_for('main.post_expand',post_id=post.id) }}
+" class="btn btn-success">See All Replies..</a>
+
+        </div> </div>
+
+
+
+
+    </article><br>
+
+  {%endfor%}
+{% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+      {% if page_num %}
+        {% if posts.page == page_num %}
+          <a class="btn btn-success mb-4  " href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
+        {% else %}
+          <a class="btn btn-outline-success mb-4" href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
+        {% endif %}
+      {% else %}
+        ...
+      {% endif %}
+    {% endfor %}
+</div>
+  {% endblock content %}

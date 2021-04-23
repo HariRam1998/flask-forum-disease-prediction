@@ -1,0 +1,50 @@
+{%extends "layout.html"%}
+{%block content%}<br><br>
+<div class="col-md-11">
+	{%for post in posts.items%}
+
+		<article class="border rounded m-1 p-3" style="background-color: white;border-radius:15px;">
+			<h3>{{post.title}}</h3>
+			<div>
+				<img src="{{ url_for('static', filename='profiles/' + post.author.image_file) }}" class="float-left rounded-circle" style="width: 40px; height: 40px;">
+				<h6 class="text-muted p-2" style="height: 40px;">{{post.author.username}}</h6>
+				<small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+			</div>
+			<p style = "white-space: pre-line;">
+				{{post.content}}
+			</p>
+			<div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.update_post', post_id=post.id) }}">Update</a>
+            <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal{{post.id}}">Delete</button>
+          </div>
+		<div class="modal fade" id="deleteModal{{post.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{post.id}}" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">Do You Really Want to Delete the Post?</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-footer">
+		        <form action="{{ url_for('posts.delete_post', post_id=post.id) }}" method="POST">
+            <input class="btn btn-danger" type="submit" value="Delete">
+          </form>
+		      </div>
+
+      </div></div></div><!-- added few divs here -->
+</article>
+<br>
+	{%endfor%}
+	{% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+      {% if page_num %}
+        {% if posts.page == page_num %}
+          <a class="btn btn-success mb-4" href="{{ url_for('users.my_posts', page=page_num) }}">{{ page_num }}</a>
+        {% else %}
+          <a class="btn btn-outline-success mb-4" href="{{ url_for('users.my_posts', page=page_num) }}">{{ page_num }}</a>
+        {% endif %}
+      {% else %}
+        ...
+      {% endif %}
+	{% endfor %}</div>
+	{% endblock content %}

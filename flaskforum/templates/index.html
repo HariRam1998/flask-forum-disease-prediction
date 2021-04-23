@@ -1,0 +1,14 @@
+
+{%extends "layout.html"%}
+{%block content%}<br>
+<center>
+      <div id="camera">
+        <img src="{{ url_for('plantdisease.video_feed') }}" alt="video feed">
+      </div>
+      <div id="btns-div">
+        <a href="{{ url_for('plantdisease.capture') }}">
+          <img src="{{ url_for('static',filename='picture.png') }}" alt="take picture" class="btn" width="80px">
+        </a>
+      </div>
+</center>
+  {% endblock content %}

@@ -1,0 +1,27 @@
+{%extends "layout.html"%}
+{%block content%}
+<center><br><br><br>
+     <div class="col-md-7">
+<article class="border m-1 p-2 box1" style="background-color: white;text-align:left;border-radius:15px">
+    <center>
+    <section>
+
+        <div class="container-fluid details">
+            <h1 class="text-center mt-3 ">Predict Crop Disease &amp; Get Cure</h1>
+            <br>
+            <form action="/predictupload" method="post" enctype="multipart/form-data" onsubmit="showloading()">
+                <input type="file" name="image" class="upload">
+                <br>
+                <br>
+                <input type="submit" value="Predict" class="w3-button w3-green w3-border w3-border-red w3-round-large">
+            </form>
+
+<br><h1>OR</h1><br>
+                <a class="w3-button w3-grey w3-border w3-border-black w3-round-large" href="{{ url_for('plantdisease.camon') }}"><b><p style="font-size:15px"><i class="fas fa-camera"></i> Click Photo</p></b></a>
+            <br><br>
+        </div>
+    </section>
+    </center>
+</article></div>
+</center>
+  {% endblock content %}

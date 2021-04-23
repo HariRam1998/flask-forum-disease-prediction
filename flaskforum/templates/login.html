@@ -1,0 +1,67 @@
+{%extends "layout.html"%}
+{%block content%}
+<br>
+<center>
+  <div class="col-md-6">
+<article class="border m-1 p-2 box1" style="background-color: white;text-align:left;border-radius:15px">
+<form class='p-5'  method="POST" action="">
+ {{ form.hidden_tag() }}
+  <h2 class="border-bottom mb-4"> <b><p style="color:#006400">Log In </p></b></h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+  <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <!-- <strong>Title</strong> --> {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+  <div class="form-group">
+
+    {{form.email.label(class="form-control-label") }}
+    {{form.email(class = "form-control form-control-lg")}}
+  <!--  {%if form.email.errors%}
+      {{form.email(class = "form-control form-control-lg is-invalid")}}
+      <div class = "invalid-feedback">
+        {%for error in form.email.errors%}
+          <span>{{error}}</span>
+        {%endfor%}
+      </div>
+    {%else%}
+      {{form.email(class = "form-control form-control-lg is-valid")}}
+    {%endif%}-->
+    <!--<label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">-->
+  </div>
+  <div class="form-group">
+    {{form.password.label(class="form-control-label")}}
+    {{form.password(class = "form-control form-control-lg")}}
+    <!-- {%if form.password.errors%}
+      {{form.password(class = "form-control form-control-lg is-invalid")}}
+      <div class = "invalid-feedback">
+        {%for error in form.password.errors%}
+          <span>{{error}}</span>
+        {%endfor%}
+      </div>
+    {%else%}
+      {{form.password(class = "form-control form-control-lg is-valid")}}
+    {%endif%}-->
+    <!--<label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">-->
+  </div>
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Remember me</label>
+  </div>
+  <div class="border-top pt-3">
+    {{ form.submit(class="btn btn-outline-success") }}
+  </div>
+  <br>
+  <a class="nav-link" href="{{ url_for('users.forgotpassword') }}"><b><p style="color:#FF6347"><i class="fa fa-key" aria-hidden="true"></i> Forgot Password</p></b></a>
+</form>
+</article>
+  </div>
+  </center>
+{% endblock content %}

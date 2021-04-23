@@ -1,0 +1,119 @@
+{%extends "layout.html"%}
+{%block content%}
+
+
+<br><br>
+<div class="col-md-11">
+<article class="border m-1 p-1" style="background-color: white;text-align:left;border-radius:15px">
+    <div class="container my-2">
+        <div class="row mb-5">
+
+            <div class="col-sm" style="margin-bottom: 23px;">
+                <span class="border border-primary">
+                    <img src="{{ user_image }}" alt="User Image" class="img-thumbnail">
+                    <!-- <img src="{{pred_output}}" alt="User Image" class="img-thumbnail"> -->
+                </span>
+            </div>
+
+            <div class="col">
+
+                <div>
+                    <h1 style="padding: 15px; background-color: rgb(153, 156, 150); color: white;"
+                        class="text-center mb-3 content-h1 rounded">
+                        Predicted Output </h1>
+                </div>
+
+
+{% if pred_output.find("healthy") == -1%}
+                <h2>Disease Name : {{pred_output}}</h2>
+                {% else %}
+                <h2>Plant Name : {{pred_output}}</h2>
+                {% endif %}
+                <h3 style="line-height: 100%;"></h3>
+                <hr class="w-100 mx-auto ">
+            </div>
+        </div>
+    </div>
+
+<div class="col-md-12 p-5">
+    {% if pred_output.find("healthy") == -1%}
+    <h1><i>About & Solution for Disease : </i></h1>{% else %}
+    <h1><i>About the Plant : </i></h1>
+    {% endif %}
+    <br>
+        <p align="justify">{{context.details}}</p>
+
+
+</div>
+</article><br>{% if pred_output.find("healthy") == -1%}
+    <article class="border m-1 p-1" style="background-color: white;text-align:left;border-radius:15px;border-radius:15px;box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);">
+
+
+
+    <section>
+
+        <div class="container">
+            <h1 style="padding: 15px; background-color: rgb(153, 156, 150); color: white;"
+                class="text-center my-3 content-h1">
+                Recommended Products</h1>
+        </div>
+
+        <div class="container">
+
+                <div class="row">
+                    <div class="col-lg-4 mb-4">
+                <div class="card" style="width:250px;height:250px">
+                    <div class="card-body text-center card-style" >
+                        <img style="border-radius: 5px;" class="img-fluid" src="{{context.image1}}" alt="" width="100px" height="225px">
+                        <h3 class="card-text">{{context.info1}}</h3>
+                    </div>
+                </div></div><div class="col-lg-4 mb-4">
+                <div class="card" style="width:250px;height:250px">
+                    <div class="card-body text-center card-style">
+                        <img style="border-radius: 5px;" class="img-fluid" src="{{context.image2}}" alt="" width="100px" height="225px">
+                        <h3 class="card-text">{{context.info2}}</h3>
+                    </div>
+                </div></div><div class="col-lg-4 mb-4">
+                <div class="card "style="width:250px;height:250px">
+                    <div class="card-body text-center card-style">
+                <img style="border-radius: 5px;" class="img-fluid" src="{{context.image3}}" alt="" width="100px" height="100px">
+                        <h3 class="card-text">{{context.info3}}</h3>
+                    </div>
+                </div></div></div>
+            <div class="row">
+                    <div class="col-lg-4 mb-4">
+                <div class="card ">
+                    <div class="card-body text-center card-style">
+                        <h3 class="card-text"> ₹ {{context.price1}}</h3>
+                    </div>
+                </div></div>
+
+                    <div class="col-lg-4 mb-4">
+                <div class="card ">
+                    <div class="card-body text-center card-style">
+                        <h3 class="card-text">₹ {{context.price2}}</h3>
+                    </div>
+                </div></div>
+                    <div class="col-lg-4 mb-4">
+                <div class="card ">
+                    <div class="card-body text-center card-style">
+                        <h3 class="card-text">₹ {{context.price3}}</h3>
+                    </div>
+                </div></div></div>
+
+
+
+
+            <!-- <div class="container-fluid contents"> -->
+            <h5 style="padding: 15px; background-color: rgb(153, 156, 150); color: white;"
+                class="text-center my-3 contents">
+                </h5>
+            <!-- </div> -->
+        </div>
+
+    </section>
+
+
+</article>{% endif %}
+</div><br>
+  {% endblock content %}

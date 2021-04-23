@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    {% if title %}
+        <title>Agri Forum - {{ title }}</title>
+    {% else %}
+        <title>Agri Forum</title>
+    {% endif %}
+    <style>
+
+    #leaves {position:relative;top:-50px;width:100%;text-align: right;}
+
+#leaves i {
+    display: inline-block;
+    width: 200px;
+    height: 150px;
+    background: linear-gradient(to bottom right, #309900, #005600);
+    transform: skew(20deg);
+    border-radius: 5% 40% 70%;
+    box-shadow: inset 0px 0px 1px #222;
+    border: 1px solid #333;
+    z-index: 1;
+    -webkit-animation: falling 5s 0s infinite;
+}
+
+#leaves i:nth-of-type(2n) { -webkit-animation: falling2 5s 0s infinite; }
+#leaves i:nth-of-type(3n) { -webkit-animation: falling3 5s 0s infinite; }
+
+#leaves i:before {
+  position: absolute;
+  content: '';
+  top: 117px;
+  right: 9px;
+  height: 27px;
+  width: 32px;
+  transform: rotate(49deg);
+  border-radius: 0% 15% 15% 0%;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #222;
+  border-left: 0px solid #222;
+  border-right: 1px solid #222;
+  background: linear-gradient(to right, rgba(0,100,0,1), #005600);
+  z-index: 1;
+}
+
+#leaves i:after {
+  content: '';
+  height: 125px;
+  width: 10px;
+  background: linear-gradient(to right, rgba(0,0,0,.15), rgba(0,0,0,0));
+  display: block;
+  transform: rotate(125deg);
+  position: absolute;
+  left: 85px;
+  border-radius:50%;
+}
+
+
+#leaves i:nth-of-type(n)    { height:23px; width:30px; }
+#leaves i:nth-of-type(n):before { width:7px; height:5px; top:17px; right:1px; }
+#leaves i:nth-of-type(n):after { width:2px; height:17px; left: 12px; top:0px; }
+
+#leaves i:nth-of-type(2n+1)    { height:11px; width:16px; }
+#leaves i:nth-of-type(2n+1):before { width:4px; height:3px; top:7px; right:0px; }
+#leaves i:nth-of-type(2n+1):after { width:2px; height:6px; left: 5px; top:1px; }
+
+#leaves i:nth-of-type(3n+2)  { height:17px; width:23px; }
+#leaves i:nth-of-type(3n+2):before  { height:4px; width:4px; top:12px; right:1px; }
+#leaves i:nth-of-type(3n+2):after  { height:10px; width:2px; top:1px; left:8px; }
+
+#leaves i:nth-of-type(n)   { -webkit-animation-delay: 1.9s;}
+#leaves i:nth-of-type(2n)  { -webkit-animation-delay: 3.9s;}
+#leaves i:nth-of-type(3n)  { -webkit-animation-delay: 2.3s;}
+#leaves i:nth-of-type(4n)  { -webkit-animation-delay: 4.4s;}
+#leaves i:nth-of-type(5n)  { -webkit-animation-delay: 5s;  }
+#leaves i:nth-of-type(6n)  { -webkit-animation-delay: 3.5s;}
+#leaves i:nth-of-type(7n)  { -webkit-animation-delay: 2.8s;}
+#leaves i:nth-of-type(8n)  { -webkit-animation-delay: 1.5s;}
+#leaves i:nth-of-type(9n)  { -webkit-animation-delay: 3.3s;}
+#leaves i:nth-of-type(10n) { -webkit-animation-delay: 2.5s;}
+#leaves i:nth-of-type(11n) { -webkit-animation-delay: 1.2s;}
+#leaves i:nth-of-type(12n) { -webkit-animation-delay: 4.1s;}
+#leaves i:nth-of-type(13n) { -webkit-animation-delay: 1s;  }
+#leaves i:nth-of-type(14n) { -webkit-animation-delay: 4.7s;}
+#leaves i:nth-of-type(15n) { -webkit-animation-delay: 3s;  }
+
+#leaves i:nth-of-type(n)    { background: linear-gradient(to bottom right, #309900, #005600); }
+#leaves i:nth-of-type(2n+2)  { background: linear-gradient(to bottom right, #5e9900, #2b5600); }
+#leaves i:nth-of-type(4n+1)  { background: linear-gradient(to bottom right, #990, #564500); }
+
+#leaves i:nth-of-type(n)    { opacity: .7;}
+#leaves i:nth-of-type(3n+1)  { opacity: .5;}
+#leaves i:nth-of-type(3n+2)  { opacity: .3;}
+
+#leaves i:nth-of-type(n)    {transform: rotate(180deg);}
+
+
+#leaves i:nth-of-type(n) { -webkit-animation-timing-function:ease-in-out;}
+
+@-webkit-keyframes falling {
+
+    0% {
+        -webkit-transform:
+            translate3d(300,0,0)
+            rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform:
+            translate3d(-350px,700px,0)
+            rotate(90deg);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes falling3 {
+     0% {
+        -webkit-transform:
+            translate3d(0,0,0)
+            rotate(-20deg);
+    }
+
+    100% {
+        -webkit-transform:
+            translate3d(-230px,640px,0)
+            rotate(-70deg);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes falling2 {
+     0% {
+        -webkit-transform:
+            translate3d(0,0,0)
+            rotate(90deg);
+    }
+
+    100% {
+        -webkit-transform:
+            translate3d(-400px,680px,0)
+            rotate(0deg);
+        opacity: 0;
+    }
+}
+
+body {
+  background:  url({{ url_for('static', filename='wp4021674-plant-desktop-wallpapers.jpg') }}) no-repeat fixed center;
+  background-size: cover;
+  font-family: "Montserrat", sans-serif;
+}
+.navbar-inner {
+    background:transparent;
+}
+.topnav .search-container {
+  float: right;
+}
+
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.topnav .search-container button:hover {
+  background: #ccc;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav .search-container {
+    float: none;
+  }
+  .topnav a, .topnav input[type=text], .topnav .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type=text] {
+    border: 1px solid #ccc;
+  }
+}
+
+.pagewrap{
+    display: flex;
+
+    /*vertically stack children*/
+    flex-direction: column;
+
+    /* expand to take full height of page */
+    /* min-height overrides both height & max-height */
+    min-height: 100vh;
+
+  }
+   main{
+    flex-grow: 1;
+  }
+.sidenav {
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  top: 140px;
+  right: 15px;
+  overflow-x: hidden;
+  padding: 8px 0;
+}
+
+.sidenav a {
+  padding: 0px 0px 0px 0px;
+  text-decoration: none;
+  color: #2196F3;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #064579;
+}
+
+.upload {
+
+            font-size: 20px;
+            background-color: rgb(255, 252, 252);
+            border-radius: 20px;
+            outline: none;
+            width: 315px;
+            color: rgb(0, 0, 0);
+            border: 3px solid rgb(45, 47, 49);
+
+        }
+
+        ::-webkit-file-upload-button {
+            color: white;
+            padding: 20px;
+            border: 2px solid rgb(129, 129, 129);
+            background-color: rgb(129, 129, 129);
+            border-radius: 15px;
+
+        }
+
+        ::-webkit-file-upload-button:hover {
+            border-radius: 20px;
+            border: 2px solid rgb(177, 174, 174);
+
+        }
+
+
+
+        .carousel-caption {
+            background: rgba(24, 25, 26, 0.5);
+            border-radius: 10px;
+        }
+
+        .carousel-caption h3 {
+
+
+            font-family: 'Rowdies', cursive;
+            color: yellow;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+
+        }
+
+        .carousel-caption p {
+            padding: 7px;
+
+        }
+
+</style>
+  </head>
+  <body>
+  <div class="pagewrap ">
+    <nav class="navbar navbar-expand-lg  sticky-top" style="background-color: #86c232;">
+      <a class="navbar-brand" href="{{ url_for('main.home') }}"><b><p style="color:#006400"><i class="fas fa-seedling"></i> Agri Forum</p></b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto nav-pills">
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ url_for('main.home') }}"><b><p style="color:#006400"><i class="fas fa-home"></i> Home</p></b><span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('main.about') }}"><b><p style="color:#006400"><i class="fas fa-comment-dots"></i> About</p></b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('plantdisease.select') }}"><b><p style="color:#006400"><i class="fas fa-viruses"></i> Disease Identification</p></b></a>
+      </li>
+
+    </ul>
+  </div>
+  {% if current_user.is_authenticated%}
+  <ul class="nav justify-content-end nav-pills">
+  <li class="nav-item">
+        <form action="{{ url_for('main.search') }}" method="POST">
+      <input type="text" placeholder="Search.." name="searching" class="p-1 ml-3" style="border-radius: 5px;">
+      <button type="submit" value="Search"><i class="fa fa-search"></i></button>
+    </form>
+      </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('users.account') }}"><b><p style="color:#006400"><i class="fas fa-comment-dots"></i> Account</p></b></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('users.logout') }}"><b><p style="color:#006400"><i class="fas fa-sign-out-alt"></i> Logout</p></b></a>
+  </li>
+    <li>
+    <img class=" img-thumbnail img-fluid" src="{{ image_file }}" width="40px"></li>
+  </ul>
+  {%else%}
+  <ul class="nav justify-content-end nav-pills">
+    <li class="nav-item">
+        <form action="{{ url_for('main.search') }}" method="POST">
+      <input type="text" placeholder="Search.." name="searching">
+      <button type="submit" value="Search"><i class="fa fa-search"></i></button>
+    </form>
+      </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('users.login') }}"><b><p style="color:#006400"><i class="fas fa-sign-in-alt"></i> Login</p></b></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('users.register') }}"><b><p style="color:#006400"><i class="fas fa-cash-register"></i> Register</p></b></a>
+  </li>
+</ul>
+{%endif%}
+</nav>
+<main>
+  <div class="col-md-11 pt-1">
+    <div class="row">
+        <div class="col-md-10">
+
+          {% block content %}{% endblock %}
+        </div>
+        {% if current_user.is_authenticated%}
+      <div class=" sidenav border  m-4 p-3" style="background-color: white ; border-radius:15px;">
+          <nav class="nav flex-column container " >
+              <center>
+          <a class="nav-link" href="{{ url_for('posts.new_post') }}"><b><p style="color:#006400;font-size:27px;background-color:white;">Create Post</p></b></a>
+<hr style="height:2px;border-width:0;color:gray;background-color:green">
+            <a class="nav-link" href="{{ url_for('users.my_posts') }}"><b><p style="color:#006400;font-size:27px;background-color:white;">My Posts</p></b></a>
+<hr style="height:2px;border-width:0;color:gray;background-color:gray">
+            <a class="nav-link" href="{{ url_for('users.my_likes') }}"><b><p style="color:#006400;font-size:27px;background-color:white;">My Likes</p></b></a>
+<hr style="height:2px;border-width:0;color:gray;background-color:gray">
+            <div id="google_translate_element"></div>
+
+              </center>
+          </nav>
+          </div>
+            {% else %}
+        <div class=" sidenav border  m-4 p-3" style="background-color: white ; border-radius:15px;">
+          <nav class="nav flex-column container " >
+              <center>
+            <div id="google_translate_element"></div>
+              </center>
+          </nav>
+          </div>
+        </div>
+        {%endif%}
+</div>
+</main>
+    <footer class="w3-container w3-padding-16 w3-center w3-xlarge" style="background-color:#2F5233">
+  <a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a>
+  <a href="https://www.pinterest.com"><i class="fab fa-pinterest"></i></a>
+  <a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a>
+  <a href="https://www.flickr.com"><i class="fab fa-flickr"></i></a>
+  <a href="https://www.linkedin.com"><i class="fab fa-linkedin"></i></a>
+  <p class="w3-large"><b>
+    Powered by <i class="fas fa-seedling"></i> Agri Forum</b>
+  </p>
+</footer>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js"></script>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </div>
+  </body>
+</html>
