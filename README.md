@@ -2,6 +2,12 @@
 
 first install all pips in requirements.txt
 
+In flaskforum/users/routes in 68 line give your mail id and password and in line 69 give your mail id
+
+In flaskforum/plantdisease/routes in line 35 give the absolute path of the model given as v6_pred_cott_dis.h5 saved in flaskforum/plantdisease
+
+Absolute path is necessary otherwise the project will not run
+
 I have trained the plant disease dataset from kaggle and created the model using CNN.
 
 Trained model coding: firsttrialkeras.ipynb
